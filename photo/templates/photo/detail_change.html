@@ -1,0 +1,92 @@
+{% extends 'photo/base.html' %}
+{% block title %}Album Photo{% endblock %}
+{% block albums_active %}active{% endblock %}
+
+{% block body %}
+
+
+    <div class="col-sm-6 col-sm-offset-3">
+      <div class="thumbnail">  
+              {% if albumphoto.photo_logo %}
+                  <img src="{{ albumphoto.photo_logo.url }}" class='img-responsive'>
+              {% else %}
+                  <h3>No image to display</h3>
+              {% endif %}
+          </a>
+        <div class="caption">
+            <div style="text-align: center"class="page-header">
+                <h1>{{ albumphoto.photo_title }}</h1>
+            </div>
+          <p>
+
+              <h1>Choices:</h1>
+            <form class="form-horizontal" role="form" action="{% url 'photo:convert' albumphoto.id %}" method="POST">
+                {% csrf_token %}
+                <p class="bg-success">
+                <br>
+                <label class="control-label col-sm-2">
+                    Simple:
+                </label>
+                <button name="preset" value="L" class="btn btn-primary btn-sm">Image Black-Write</button>
+                <button name="preset" value="BLUR" class="btn btn-primary btn-sm">Image Blur</button>
+                <button name="preset" value="FIND_EDGES" class="btn btn-primary btn-sm">Image Edges</button>
+                <button name="preset" value="1" class="btn btn-primary btn-sm">Image White Pixel's</button>
+                <br>
+                <br>
+                </p>
+                
+                <p class="bg-info">
+                <br>
+                <label class="control-label col-sm-2">
+                    Image Rotate:
+                </label>
+                <button name="preset" value="90" class="btn btn-primary btn-sm">Rotate Image on 90</button>
+                <button name="preset" value="180" class="btn btn-primary btn-sm">Rotate Image on 180</button>
+                <button name="preset" value="270" class="btn btn-primary btn-sm">Rotate Image on 270</button>
+                <button name="preset" value="360" class="btn btn-primary btn-sm">Rotate Image on 360</button>
+                <br>
+                <br>
+                </p>
+
+                <p class="bg-warning">
+                <br>
+                <label class="control-label col-sm-2">
+                    Hard Change:
+                </label>
+                <button name="preset" value="ghost" class="btn btn-primary btn-sm">Image Ghost</button>
+                <button name="preset" value="pixel" class="btn btn-primary btn-sm">Image Color Pixel</button>
+                <button name="preset" value="light" class="btn btn-primary btn-sm">Image Light</button>
+                <button name="preset" value="night" class="btn btn-primary btn-sm">Image Night</button>
+                <br>
+                <br> 
+                </p>
+
+                <p class="bg-danger">
+                <br>
+                <label class="control-label col-sm-2">
+                    Resolution:
+                </label>
+                <button name="preset" value="300" class="btn btn-primary btn-sm">300 pixels</button>
+                <button name="preset" value="128" class="btn btn-primary btn-sm">128 pixels</button>
+                <button name="preset" value="512" class="btn btn-primary btn-sm">512 pixels</button>
+                <button name="preset" value="return" class="btn btn-success btn-sm">Return image</button>
+                <br>
+                <br>
+                </p>
+
+
+                <!--<select multiple class="form-control">
+                    <option>1</option>
+                    <option>2</option>     HHHHHHHHHHHHHHHHHHHHHHHMMMMMMMMMMMMMMMMMMMMMM...........
+                    <option>3</option>          HHHHHHHHHHHHHHHHHHHHHHHMMMMMMMMMMMMMMMMMMMMMM...........
+                    <option>4</option>                  HHHHHHHHHHHHHHHHHHHHHHHMMMMMMMMMMMMMMMMMMMMMM........... I don't know HOW?
+                    <option>5</option>
+                </select>-->
+            </form>
+          </p>
+          </br>
+          
+        </div>
+      </div>
+ 
+{% endblock %}

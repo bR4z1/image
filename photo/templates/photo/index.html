@@ -1,0 +1,65 @@
+{% extends 'photo/base.html' %}
+{% block photo_list_active %}active{% endblock %}
+
+{% block body %}
+<div class="albums-container container-fluid">
+            <div class="starter-template" style="text-align: center;">
+                <h1>Hello {{ user.username }} !!!</h1>
+                <h4>You can change image grafity, just push to "View Details" Button.</h4>
+                <h4>If didn't like this change, You can back Image on "Return Image"</h4>
+            </div>
+
+        {% if photo_list %}
+            {% for albumphoto in photo_list %}
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-12 col-md-6 col-md-push-3">
+                        <div class="thumbnail">
+                            <a href="{% url 'photo:detail' albumphoto.id %}">
+                                <img src="{{ albumphoto.photo_logo.url }}" class="img-responsive">
+                            </a>
+                            <div class="caption">
+                                <div class="btn-group">
+                                    <h2>{{ albumphoto.photo_title }}</h2>
+                                    <form action="{% url 'photo:convert' albumphoto.id %}" method="POST">
+                                        {% csrf_token %}
+
+                                        <a class="btn btn-primary" href="{% url 'photo:detail' albumphoto.id %}">View Details</a>
+                                        <button name="preset" value="return_main" class="btn btn-danger">Return Image</button>
+
+                                    </form>
+                                    <br>
+                                    <a class="btn btn-success" href="{% url 'photo:get_image' albumphoto.id %}">Download</a>
+                                    <form action="{% url 'photo:album-delete' albumphoto.id %}" method="post" style="display: inline;">
+                                            {% csrf_token %}
+                                            <input type="hidden" name="album_id" value="{{ album.id }}" />
+                                            <button type="submit" class="btn btn-default">
+                                            <span class="glyphicon glyphicon-trash"></span>
+                                        </button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            
+
+
+
+            {% endfor %}
+        {% else %}
+            <div id="center" class="col-sm-12">
+                <br>
+                <a href="{% url 'photo:album-add' %}">
+                    <button type="button" class="btn btn-success">
+                        <span class="glyphicon glyphicon-plus"></span>&nbsp; Add a Photo
+                    </button>
+                </a>
+            </div>
+        {% endif %}
+    </div>
+</div>
+</div>
+{% endblock %}

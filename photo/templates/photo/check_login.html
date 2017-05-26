@@ -1,0 +1,17 @@
+{% extends 'photo/base.html' %}
+
+{% block body %}
+<style>
+ div 
+   #center { text-align: center; }
+</style>
+<div class="albums-container container-fluid">
+    <div class="row">
+            <div class="starter-template" id="center">
+                <h4>Please, <a href="{% url 'photo:register' %}">Click here</a> to register a 
+                                    New Account or <a href="{% url 'photo:login_user' %}">Loggin</a></h4>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

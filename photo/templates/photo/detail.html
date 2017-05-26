@@ -1,0 +1,32 @@
+{% extends 'photo/base.html' %}
+{% block title %}Album Photo{% endblock %}
+{% block albums_active %}active{% endblock %}
+
+{% block body %}
+
+
+    <div class="col-sm-6 col-sm-offset-3">
+      <div style="text-align: center" class="thumbnail">  
+              {% if albumphoto.photo_logo %}
+                  <img src="{{ albumphoto.photo_logo.url }}" class='img-responsive'>
+              {% else %}
+                  <h3>No image to display</h3>
+              {% endif %}
+          </a>
+        <div class="caption">
+          <!--<label> Resolution image: {{ hidden }}</label>  HHHHHHHHHHHMMMMMMMMMMMMMMM........... I don't know HOW?-->
+          <label> Resolution image(origin): {{ albumphoto.height_field }} x {{ albumphoto.width_field }} </label>
+
+          <p>
+            <a href="{% url 'photo:album-add' %}" class="btn btn-primary" role="button">Add New Photo</a>
+            <a href="{% url 'photo:detail_change' albumphoto.id %}" class="btn btn-primary" role="button">Change Details</a>
+            <a href="{% url 'photo:index' %}" class="btn btn-primary" role="button">Back Main Page</a>
+          </p>
+        </div>
+      </div>
+ 
+{% endblock %}
+ 
+
+              
+                        

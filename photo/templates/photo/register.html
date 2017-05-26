@@ -1,0 +1,33 @@
+{% extends 'photo/base.html' %}
+{% block title %}Register User{% endblock %}
+
+
+{% block body %}
+
+<div id="center" class="container">
+    <div class="row">
+        <div class="col-sm-12 col-md-15">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <h3>Create a New Account</h3>
+                    {% if error_message %}
+                        <p><strong>{{ error_message }}</strong></p>
+                    {% endif %}
+                    <form class="form-horizontal" role="form" action="" method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        {% include 'photo/form_template.html' %}
+                        <div class="form-group">
+                            <div class="col-sm-offset-2 col-sm-10">
+                                <button type="submit" class="btn btn-success"><span class="glyphicon glyphicon-ok"></span> Submit</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+</div>
+{% endblock %}
